@@ -12,6 +12,10 @@ import br.com.natanaelribeiro.thebestmovies.data.remote.endpoint.GenresApiClient
 import br.com.natanaelribeiro.thebestmovies.data.remote.endpoint.MoviesApiClient
 import br.com.natanaelribeiro.thebestmovies.data.repositories.GenresDataRepository
 import br.com.natanaelribeiro.thebestmovies.data.repositories.MoviesDataRepository
+import br.com.natanaelribeiro.thebestmovies.viewmodels.SplashViewModel
+import br.com.natanaelribeiro.thebestmovies.viewmodels.UpcomingMoviesViewModel
+import kotlinx.coroutines.Dispatchers
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -44,5 +48,23 @@ val moviesRepositoryModule: Module = module {
 
     factory<MoviesRepository> { MoviesDataRepository(
         moviesRemoteDataSource = get()
+    ) }
+}
+
+val splashViewModelModule: Module = module {
+
+    viewModel { SplashViewModel(
+        genresRepository = get(),
+        commandProvider = get(),
+        coroutineContext = Dispatchers.Main
+    ) }
+}
+
+val upcomingMoviesViewModelModule: Module = module {
+
+    viewModel { UpcomingMoviesViewModel(
+        moviesRepository = get(),
+        commandProvider = get(),
+        coroutineContext = Dispatchers.Main
     ) }
 }

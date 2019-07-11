@@ -10,6 +10,15 @@ class UpcomingMoviesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upcoming_movies)
 
-        
+        prepareUI()
+        prepareViewModel()
+    }
+
+    private fun prepareUI() {
+
+    }
+
+    private fun prepareViewModel() {
+
     }
 }

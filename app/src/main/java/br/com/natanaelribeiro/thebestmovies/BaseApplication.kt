@@ -1,10 +1,7 @@
 package br.com.natanaelribeiro.thebestmovies
 
 import android.app.Application
-import br.com.natanaelribeiro.thebestmovies.di.genresNetworkModule
-import br.com.natanaelribeiro.thebestmovies.di.genresRepositoryModule
-import br.com.natanaelribeiro.thebestmovies.di.moviesNetworkModule
-import br.com.natanaelribeiro.thebestmovies.di.moviesRepositoryModule
+import br.com.natanaelribeiro.thebestmovies.di.*
 import org.koin.core.context.startKoin
 
 class BaseApplication : Application() {
@@ -19,7 +16,9 @@ class BaseApplication : Application() {
                     genresNetworkModule,
                     genresRepositoryModule,
                     moviesNetworkModule,
-                    moviesRepositoryModule
+                    moviesRepositoryModule,
+                    splashViewModelModule,
+                    upcomingMoviesViewModelModule
                 )
             )
         }
