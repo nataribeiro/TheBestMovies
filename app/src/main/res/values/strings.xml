@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">The Best Movies</string>
+    <string name="upcoming_movies_title">Upcoming Movies</string>
+    <string name="upcoming_movies_filter_hint">Type a movie name…</string>
+    <string name="splash_name">The Best\nMovies</string>
+</resources>
