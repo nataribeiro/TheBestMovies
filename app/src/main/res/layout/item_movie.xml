@@ -3,7 +3,7 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
-                                                   android:layout_height="100dp">
+                                                   android:layout_height="150dp">
 
 
     <ImageView
@@ -11,10 +11,10 @@
             android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars"
             android:id="@+id/ivMovie"
             android:contentDescription="@null"
-            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintDimensionRatio="H,0.8"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
 
     <TextView
             tools:text="Spider Man"
@@ -25,14 +25,14 @@
             android:textColor="@color/defaultTextColor"
             app:layout_constraintTop_toTopOf="@+id/ivMovie" app:layout_constraintStart_toEndOf="@+id/ivMovie"
             android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="16dp" android:layout_marginTop="8dp"/>
 
     <TextView
-            tools:text="Descrição do filme ..."
+            tools:text="Aventura"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/defaultTextColor"
-            android:id="@+id/tvMovieDescription" app:layout_constraintStart_toEndOf="@+id/ivMovie"
+            android:id="@+id/tvMovieGenres" app:layout_constraintStart_toEndOf="@+id/ivMovie"
             android:layout_marginStart="16dp" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/tvMovieTitle" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/tvMovieReleaseDate" app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +46,6 @@
             android:id="@+id/tvMovieReleaseDate"
             app:layout_constraintBottom_toBottomOf="@+id/ivMovie" app:layout_constraintStart_toEndOf="@+id/ivMovie"
             android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="16dp" android:layout_marginBottom="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

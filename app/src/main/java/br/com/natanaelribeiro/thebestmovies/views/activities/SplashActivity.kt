@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import br.com.natanaelribeiro.thebestmovies.R
-import br.com.natanaelribeiro.thebestmovies.helpers.Constants
 import br.com.natanaelribeiro.thebestmovies.helpers.Constants.EXTRA_GENRES_LIST
 import br.com.natanaelribeiro.thebestmovies.viewmodels.SplashViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,6 +36,7 @@ class SplashActivity : AppCompatActivity() {
                         val intent = Intent(this@SplashActivity, UpcomingMoviesActivity::class.java)
                         intent.putExtra(EXTRA_GENRES_LIST, cmd.genresList)
 
+                        finish()
                         startActivity(intent)
                     }
 

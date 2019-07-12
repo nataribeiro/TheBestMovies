@@ -6,12 +6,15 @@ import br.com.natanaelribeiro.thebestmovies.data.contract.GenresDataContract
 import br.com.natanaelribeiro.thebestmovies.data.contract.MoviesDataContract
 import br.com.natanaelribeiro.thebestmovies.data.contract.repositories.GenresRepository
 import br.com.natanaelribeiro.thebestmovies.data.contract.repositories.MoviesRepository
+import br.com.natanaelribeiro.thebestmovies.data.paging.factory.MoviesDataSourceFactory
 import br.com.natanaelribeiro.thebestmovies.data.remote.GenresRemoteDataSource
 import br.com.natanaelribeiro.thebestmovies.data.remote.MoviesRemoteDataSource
 import br.com.natanaelribeiro.thebestmovies.data.remote.endpoint.GenresApiClient
 import br.com.natanaelribeiro.thebestmovies.data.remote.endpoint.MoviesApiClient
 import br.com.natanaelribeiro.thebestmovies.data.repositories.GenresDataRepository
 import br.com.natanaelribeiro.thebestmovies.data.repositories.MoviesDataRepository
+import br.com.natanaelribeiro.thebestmovies.helpers.CommandInjector
+import br.com.natanaelribeiro.thebestmovies.helpers.CommandProvider
 import br.com.natanaelribeiro.thebestmovies.viewmodels.SplashViewModel
 import br.com.natanaelribeiro.thebestmovies.viewmodels.UpcomingMoviesViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +22,12 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-val genresNetworkModule: Module = module {
+val commandInjectorModule: Module = module {
+
+    single<CommandProvider> { CommandInjector }
+}
+
+val genresNetworkModule: Module = module(override = true) {
 
     factory<GenresDataContract.Remote> { GenresRemoteDataSource(genresApiClient = get()) }
     single { RestClient.getApiClient(
@@ -30,9 +38,10 @@ val genresNetworkModule: Module = module {
 
 val genresRepositoryModule: Module = module {
 
-    factory<GenresRepository> { GenresDataRepository(
-        genresRemoteDataSource = get()
-    ) }
+    factory<GenresRepository> {
+        GenresDataRepository(
+            genresRemoteDataSource = get()
+        ) }
 }
 
 val moviesNetworkModule: Module = module {
@@ -53,18 +62,26 @@ val moviesRepositoryModule: Module = module {
 
 val splashViewModelModule: Module = module {
 
-    viewModel { SplashViewModel(
-        genresRepository = get(),
-        commandProvider = get(),
-        coroutineContext = Dispatchers.Main
+    viewModel {
+        SplashViewModel(
+            genresRepository = get(),
+            commandProvider = get(),
+            coroutineContext = Dispatchers.Main
     ) }
 }
 
 val upcomingMoviesViewModelModule: Module = module {
 
-    viewModel { UpcomingMoviesViewModel(
-        moviesRepository = get(),
-        commandProvider = get(),
-        coroutineContext = Dispatchers.Main
+    viewModel {
+        UpcomingMoviesViewModel(
+            moviesRepository = get(),
+            moviesDataSourceFactory = get(),
+            commandProvider = get(),
+            coroutineContext = Dispatchers.Main
     ) }
+}
+
+val moviesDataPagingModule: Module = module {
+
+    factory { MoviesDataSourceFactory(moviesRemoteDataSource = get()) }
 }
