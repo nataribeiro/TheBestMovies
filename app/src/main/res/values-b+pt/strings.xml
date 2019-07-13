@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Os Melhores Filmes</string>
+    <string name="upcoming_movies_title">Próximos lançamentos</string>
+    <string name="upcoming_movies_filter_hint">Digite o nome de um filme…</string>
+    <string name="splash_name">Os Melhores\nFilmes</string>
+    <string name="release_date">Data de lançamento: </string>
+</resources>

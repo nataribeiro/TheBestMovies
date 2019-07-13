@@ -1,6 +1,7 @@
 package br.com.natanaelribeiro.thebestmovies.data.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class MoviesDTO(
     @SerializedName("page") val page: Int,
@@ -25,7 +26,7 @@ data class MoviesDTO(
         @SerializedName("vote_count") val vote_count: Int,
         @SerializedName("video") val video: Boolean,
         @SerializedName("vote_average") val vote_average: Double
-    )
+    ) : Serializable
 
     inner class Dates(
         @SerializedName("maximum") val maximum: String,

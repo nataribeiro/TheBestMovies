@@ -57,6 +57,7 @@ class MoviesPagingDataSource(
                         initialLoadingLiveData.postValue(PagingNetworkState.SUCCESS_WITHOUT_ITEMS)
                     }
 
+                    PAGE++
                     callback.onResult(moviesList)
                 } else {
 
@@ -74,8 +75,6 @@ class MoviesPagingDataSource(
     }
 
     override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<MoviesDTO.Movie>) {
-
-        PAGE++
 
         GlobalScope.launch(coroutineContext) {
 
@@ -95,6 +94,7 @@ class MoviesPagingDataSource(
                         moviesList = it.results.toMutableList()
                     }
 
+                    PAGE++
                     callback.onResult(moviesList)
                 } else {
 

@@ -32,7 +32,7 @@ class UpcomingMoviesViewModel(
 
     sealed class Command: GenericCommand() {
 
-        class ShowMovieDetails(val movie: MoviesDTO.Movie): Command()
+        class ShowMovieDetails(val movie: MoviesDTO.Movie, val movieGenres: String): Command()
     }
 
     lateinit var moviesInitialLoadingLiveData: LiveData<PagingNetworkState>
@@ -98,5 +98,6 @@ class UpcomingMoviesViewModel(
 
     fun showItemDetails(movie: MoviesDTO.Movie) {
 
+        command.setValue(Command.ShowMovieDetails(movie, getMovieGenres(movie.genre_ids)))
     }
 }

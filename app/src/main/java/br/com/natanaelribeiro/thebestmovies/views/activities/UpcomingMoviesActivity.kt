@@ -1,5 +1,6 @@
 package br.com.natanaelribeiro.thebestmovies.views.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,8 @@ import br.com.natanaelribeiro.thebestmovies.R
 import br.com.natanaelribeiro.thebestmovies.data.enums.PagingNetworkState
 import br.com.natanaelribeiro.thebestmovies.data.models.GenresDTO
 import br.com.natanaelribeiro.thebestmovies.helpers.Constants
+import br.com.natanaelribeiro.thebestmovies.helpers.Constants.EXTRA_MOVIE
+import br.com.natanaelribeiro.thebestmovies.helpers.Constants.EXTRA_MOVIE_GENRES
 import br.com.natanaelribeiro.thebestmovies.viewmodels.UpcomingMoviesViewModel
 import br.com.natanaelribeiro.thebestmovies.views.adapters.PagedMoviesAdapter
 import kotlinx.android.synthetic.main.activity_upcoming_movies.*
@@ -108,6 +111,21 @@ class UpcomingMoviesActivity : AppCompatActivity() {
             moviesPagedListLiveData.observe(this@UpcomingMoviesActivity, Observer { movieItem ->
 
                 pagedMoviesAdapter.submitList(movieItem)
+            })
+
+            command.observe(this@UpcomingMoviesActivity, Observer { cmd ->
+
+                when (cmd) {
+
+                    is UpcomingMoviesViewModel.Command.ShowMovieDetails -> {
+
+                        val movieDetailsIntent = Intent(this@UpcomingMoviesActivity, MovieDetailsActivity::class.java)
+                        movieDetailsIntent.putExtra(EXTRA_MOVIE, cmd.movie)
+                        movieDetailsIntent.putExtra(EXTRA_MOVIE_GENRES, cmd.movieGenres)
+
+                        startActivity(movieDetailsIntent)
+                    }
+                }
             })
         }
     }

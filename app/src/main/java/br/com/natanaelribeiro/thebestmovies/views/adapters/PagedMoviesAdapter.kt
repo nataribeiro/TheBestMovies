@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.natanaelribeiro.thebestmovies.R
 import br.com.natanaelribeiro.thebestmovies.data.enums.PagingNetworkState
 import br.com.natanaelribeiro.thebestmovies.data.models.MoviesDTO
+import br.com.natanaelribeiro.thebestmovies.helpers.Constants.IMAGE_PATH_BASE_URL
 import br.com.natanaelribeiro.thebestmovies.viewmodels.UpcomingMoviesViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_loading.view.*
@@ -20,8 +21,6 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 
 class PagedMoviesAdapter(private val upcomingMoviesViewModel: UpcomingMoviesViewModel)
     : PagedListAdapter<MoviesDTO.Movie, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
-
-    private val IMAGE_PATH_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
     private val LOADING_ITEM_TYPE = 0
     private val CONTENT_ITEM_TYPE = 1
